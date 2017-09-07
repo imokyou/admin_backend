@@ -1,0 +1,111 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+ALLOWED_HOSTS	../config/settings.py	/^ALLOWED_HOSTS = []$/;"	kind:variable	line:26
+AUTH_PASSWORD_VALIDATORS	../config/settings.py	/^AUTH_PASSWORD_VALIDATORS = [$/;"	kind:variable	line:108
+ArgFormatInvalid	../config/errors.py	/^ArgFormatInvalid = (-1001, 'Args Format Invalid')$/;"	kind:variable	line:5
+ArgMis	../config/errors.py	/^ArgMis = (-1000, 'Args Missing')$/;"	kind:variable	line:4
+BASE_DIR	../config/settings.py	/^BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))$/;"	kind:variable	line:14
+CORS_ORIGIN_WHITELIST	../config/settings.py	/^CORS_ORIGIN_WHITELIST = ($/;"	kind:variable	line:141
+CustomCookie	../app/auth/views.py	/^class CustomCookie(SimpleCookie):$/;"	kind:class	line:15
+DATABASES	../config/settings.py	/^DATABASES = {$/;"	kind:variable	line:86
+DATABASE_ROUTERS	../config/settings.py	/^DATABASE_ROUTERS = ['config.db_routers.Router']$/;"	kind:variable	line:77
+DEBUG	../config/settings.py	/^DEBUG = True$/;"	kind:variable	line:24
+DEFAULT_HOST	../config/settings.py	/^DEFAULT_HOST = '127.0.0.1'$/;"	kind:variable	line:84
+DEFAULT_PORT	../config/settings.py	/^DEFAULT_PORT = 3306$/;"	kind:variable	line:85
+DEFAULT_PSW	../config/settings.py	/^DEFAULT_PSW = 'lupin2008cn'$/;"	kind:variable	line:83
+DEFAULT_USER	../config/settings.py	/^DEFAULT_USER = 'root'$/;"	kind:variable	line:82
+DataNotExists	../config/errors.py	/^DataNotExists = (-2000, 'Data Not Exists')$/;"	kind:variable	line:7
+ErrResp	../lib/utils.py	/^def ErrResp(errmsg):$/;"	kind:function	line:15
+HttpJSONResponse	../lib/utils.py	/^def HttpJSONResponse(js):$/;"	kind:function	line:6
+HttpResponse	../app/auth/views.py	/^from django.http.response import HttpResponseRedirect, HttpResponse$/;"	kind:namespace	line:8
+HttpResponse	../lib/utils.py	/^from django.http import HttpResponse$/;"	kind:namespace	line:3
+HttpResponseRedirect	../app/auth/views.py	/^from django.http.response import HttpResponseRedirect, HttpResponse$/;"	kind:namespace	line:8
+INSTALLED_APPS	../config/settings.py	/^INSTALLED_APPS = [$/;"	kind:variable	line:31
+MIDDLEWARE_CLASSES	../config/settings.py	/^MIDDLEWARE_CLASSES = [$/;"	kind:variable	line:43
+NormalResp	../lib/utils.py	/^def NormalResp(d={}):$/;"	kind:function	line:11
+REDIRECT_LOGIN_URI	../config/settings.py	/^REDIRECT_LOGIN_URI = 'http:\/\/admin.js101.local\/login'$/;"	kind:variable	line:129
+REDIS	../config/settings.py	/^REDIS = {$/;"	kind:variable	line:97
+ROOT_URLCONF	../config/settings.py	/^ROOT_URLCONF = 'config.urls'$/;"	kind:variable	line:55
+Router	../config/db_routers.py	/^class Router(object):$/;"	kind:class	line:1
+SECRET_KEY	../config/settings.py	/^SECRET_KEY = 'rygww@y)o746e!_z3y17ck4z!0dxq2kt11z@60o6dmxl24s^wn'$/;"	kind:variable	line:21
+SESSION_COOKIE_AGE	../config/settings.py	/^SESSION_COOKIE_AGE = 60 * 60$/;"	kind:variable	line:125
+SESSION_EXPIRE_AT_BROWSER_CLOSE	../config/settings.py	/^SESSION_EXPIRE_AT_BROWSER_CLOSE = True$/;"	kind:variable	line:124
+SESSION_SAVE_EVERY_REQUEST	../config/settings.py	/^SESSION_SAVE_EVERY_REQUEST = True$/;"	kind:variable	line:126
+SITE_URL	../config/settings.py	/^SITE_URL = 'http:\/\/admin.js101.local'$/;"	kind:variable	line:128
+STATIC_ROOT	../config/settings.py	/^STATIC_ROOT = os.path.join(BASE_DIR, "static")$/;"	kind:variable	line:134
+STATIC_URL	../config/settings.py	/^STATIC_URL = '\/static\/'$/;"	kind:variable	line:135
+SimpleCookie	../app/auth/views.py	/^from Cookie import SimpleCookie$/;"	kind:namespace	line:4
+SthWrong	../config/errors.py	/^SthWrong = (-1024, 'Something Wrong')$/;"	kind:variable	line:2
+TEMPLATES	../config/settings.py	/^TEMPLATES = [$/;"	kind:variable	line:57
+USE_TZ	../config/settings.py	/^USE_TZ=True$/;"	kind:variable	line:122
+User	../app/auth/views.py	/^from django.contrib.auth.models import User$/;"	kind:namespace	line:6
+UserNotExists	../config/errors.py	/^UserNotExists = (-2001, 'User Not Exists')/;"	kind:variable	line:8
+WSGI_APPLICATION	../config/settings.py	/^WSGI_APPLICATION = 'config.wsgi.application'$/;"	kind:variable	line:76
+__init__.py	../app/__init__.py	1;"	kind:file	line:1
+__init__.py	../app/auth/__init__.py	1;"	kind:file	line:1
+__init__.py	../app/common/__init__.py	1;"	kind:file	line:1
+__init__.py	../config/__init__.py	1;"	kind:file	line:1
+__init__.py	../dbmodel/__init__.py	1;"	kind:file	line:1
+__init__.py	../lib/__init__.py	1;"	kind:file	line:1
+allow_migrate	../config/db_routers.py	/^    def allow_migrate(self, db, app_label, model_name=None, **hints):$/;"	kind:member	line:32
+allow_relation	../config/db_routers.py	/^    def allow_relation(self, obj1, obj2, **hints):$/;"	kind:member	line:26
+application	../config/wsgi.py	/^application = get_wsgi_application()$/;"	kind:variable	line:17
+auth_login	../app/auth/views.py	/^from django.contrib.auth import authenticate, login as auth_login$/;"	kind:namespace	line:5
+auth_logout	../app/auth/views.py	/^from django.contrib.auth.views import logout as auth_logout$/;"	kind:namespace	line:7
+authenticate	../app/auth/views.py	/^from django.contrib.auth import authenticate, login as auth_login$/;"	kind:namespace	line:5
+autoreload	../config/wsgi.py	/^    from django.utils import autoreload$/;"	kind:namespace	line:23
+change_code_gracefull_reload	../config/wsgi.py	/^    def change_code_gracefull_reload(sig):$/;"	kind:function	line:26
+csrf_exempt	../app/auth/views.py	/^from django.views.decorators.csrf import csrf_exempt$/;"	kind:namespace	line:9
+db_for_read	../config/db_routers.py	/^    def db_for_read(self, model, **hints):$/;"	kind:member	line:6
+db_for_write	../config/db_routers.py	/^    def db_for_write(self, model, **hints):$/;"	kind:member	line:16
+db_routers.py	../config/db_routers.py	1;"	kind:file	line:1
+django	../manage.py	/^            import django$/;"	kind:namespace	line:14
+errors	../app/auth/views.py	/^from config import errors$/;"	kind:namespace	line:13
+errors.py	../config/errors.py	1;"	kind:file	line:1
+execute_from_command_line	../manage.py	/^        from django.core.management import execute_from_command_line$/;"	kind:namespace	line:8
+get_wsgi_application	../config/wsgi.py	/^from django.core.wsgi import get_wsgi_application$/;"	kind:namespace	line:13
+include	../config/urls.py	/^from django.conf.urls import include, url$/;"	kind:namespace	line:2
+json	../app/auth/views.py	/^import json$/;"	kind:namespace	line:2
+json	../app/common/views.py	/^import json$/;"	kind:namespace	line:2
+json	../lib/utils.py	/^import json$/;"	kind:namespace	line:2
+login	../app/auth/views.py	/^def login(request):$/;"	kind:function	line:31
+logout	../app/auth/views.py	/^def logout(request):$/;"	kind:function	line:62
+manage.py	../manage.py	1;"	kind:file	line:1
+models	../dbmodel/models.py	/^from django.db import models$/;"	kind:namespace	line:2
+models.py	../dbmodel/models.py	1;"	kind:file	line:1
+os	../config/settings.py	/^import os$/;"	kind:namespace	line:11
+os	../config/wsgi.py	/^import os$/;"	kind:namespace	line:11
+os	../manage.py	/^import os$/;"	kind:namespace	line:2
+require_http_methods	../app/auth/views.py	/^from django.views.decorators.http import require_http_methods$/;"	kind:namespace	line:10
+settings	../app/auth/views.py	/^from django.conf import settings$/;"	kind:namespace	line:11
+settings.py	../config/settings.py	1;"	kind:file	line:1
+sys	../manage.py	/^import sys$/;"	kind:namespace	line:3
+test	../app/auth/views.py	/^def test(request):$/;"	kind:function	line:25
+test	../app/common/views.py	/^def test(request):$/;"	kind:function	line:6
+tests.py	../app/auth/tests.py	1;"	kind:file	line:1
+timer	../config/wsgi.py	/^    from uwsgidecorators import timer$/;"	kind:namespace	line:22
+traceback	../app/auth/views.py	/^import traceback$/;"	kind:namespace	line:3
+url	../app/auth/urls.py	/^from django.conf.urls import url$/;"	kind:namespace	line:1
+url	../app/common/urls.py	/^from django.conf.urls import url$/;"	kind:namespace	line:1
+url	../config/urls.py	/^from django.conf.urls import include, url$/;"	kind:namespace	line:2
+urlpatterns	../app/auth/urls.py	/^urlpatterns = [$/;"	kind:variable	line:5
+urlpatterns	../app/common/urls.py	/^urlpatterns = [$/;"	kind:variable	line:3
+urlpatterns	../config/urls.py	/^urlpatterns = [$/;"	kind:variable	line:6
+urls.py	../app/auth/urls.py	1;"	kind:file	line:1
+urls.py	../app/common/urls.py	1;"	kind:file	line:1
+urls.py	../config/urls.py	1;"	kind:file	line:1
+utils	../app/auth/views.py	/^from lib import utils$/;"	kind:namespace	line:12
+utils	../app/common/views.py	/^from lib import utils$/;"	kind:namespace	line:3
+utils.py	../lib/utils.py	1;"	kind:file	line:1
+uwsgi	../config/wsgi.py	/^    import uwsgi$/;"	kind:namespace	line:21
+value_decode	../app/auth/views.py	/^    def value_decode(self, val):$/;"	kind:member	line:17
+value_encode	../app/auth/views.py	/^    def value_encode(self, val):$/;"	kind:member	line:20
+views	../app/auth/urls.py	/^import views$/;"	kind:namespace	line:2
+views	../app/common/urls.py	/^import views$/;"	kind:namespace	line:2
+views.py	../app/auth/views.py	1;"	kind:file	line:1
+views.py	../app/common/views.py	1;"	kind:file	line:1
+wsgi.py	../config/wsgi.py	1;"	kind:file	line:1
