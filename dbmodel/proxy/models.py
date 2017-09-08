@@ -16,3 +16,19 @@ class User(models.Model):
     class Meta:
         managed = False
         db_table = 'user'
+
+
+class ApiKey(models.Model):
+    
+    """
+    接口的apikey表
+    """
+    owner =  models.CharField(max_length=128)
+    key = models.CharField(max_length=128)
+    status = models.SmallIntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        managed = False
+        db_table = 'apikey'

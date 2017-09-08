@@ -219,7 +219,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var appRoutes = [
     { path: "login", component: __WEBPACK_IMPORTED_MODULE_3__login_login_component__["a" /* LoginComponent */] },
     { path: "notfound", component: __WEBPACK_IMPORTED_MODULE_4__notfound_notfound_component__["a" /* NotfoundComponent */] },
-    { path: "", redirectTo: 'layout', pathMatch: 'full' },
+    { path: "", redirectTo: 'admin/dashboard', pathMatch: 'full' },
     {
         path: "layout",
         component: __WEBPACK_IMPORTED_MODULE_5__main_main_component__["a" /* MainComponent */],
@@ -508,7 +508,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/main/admin/admin-user/admin-user.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<form nz-form [formGroup]=\"searchForm\" class=\"ant-advanced-search-form\">\n  <div nz-row [nzGutter]=\"40\">\n    <div nz-col [nzSpan]=\"8\">\n      <div nz-form-item nz-row>\n        <div nz-form-label nz-col [nzSpan]=\"5\">\n          <label [attr.for]=\"'account'\">账号</label>\n        </div>\n        <div nz-form-control nz-col [nzSpan]=\"19\">\n          <nz-input [nzSize]=\"'large'\" [nzPlaceHolder]=\"'请输入账号'\" [formControlName]=\"'account'\"></nz-input>\n        </div>\n      </div>\n    </div>\n\n    <div nz-col [nzSpan]=\"8\">\n      <div nz-form-item nz-row>\n        <div nz-form-label nz-col [nzSpan]=\"5\">\n          <label [attr.for]=\"'role'\">角色</label>\n        </div>\n        <div nz-form-control nz-col [nzSpan]=\"19\">\n            <nz-select nzAllowClear [nzSize]=\"'large'\" [nzPlaceHolder]=\"'ALL'\" [formControlName]=\"'role'\">\n              <nz-option [nzLabel]=\"'ALL'\" [nzValue]=\"-1\"> </nz-option>\n              <nz-option [nzLabel]=\"'超管'\" [nzValue]=\"1\"> </nz-option>\n              <nz-option [nzLabel]=\"'一般管'\" [nzValue]=\"0\"> </nz-option>\n            </nz-select>\n        </div>\n      </div>\n    </div>\n\n    <div nz-col [nzSpan]=\"8\">\n        <div nz-form-item nz-row>\n          <div nz-form-label nz-col [nzSpan]=\"5\">\n            <label [attr.for]=\"'status'\">状态</label>\n          </div>\n          <div nz-form-control nz-col [nzSpan]=\"19\">\n              <nz-select nzAllowClear [nzSize]=\"'large'\" [nzPlaceHolder]=\"'ALL'\" [formControlName]=\"'status'\">\n                <nz-option [nzLabel]=\"'ALL'\" [nzValue]=\"-1\"> </nz-option>\n                <nz-option [nzLabel]=\"'正常'\" [nzValue]=\"1\"> </nz-option>\n                <nz-option [nzLabel]=\"'封停'\" [nzValue]=\"0\"> </nz-option>\n              </nz-select>\n          </div>\n        </div>\n      </div>\n  </div>\n  <div nz-row>\n    <div nz-col [nzSpan]=\"24\" style=\"text-align: right;\">\n      <button nz-button [nzType]=\"'primary'\" (click)=\"search()\">按条件查询</button>\n      <button nz-button (click)=\"resetForm()\">重置条件</button>\n      <button nz-button (click)=\"add()\">增加新账号</button>\n    </div>\n  </div>\n</form>\n\n<nz-table #nzTable [nzDataSource]=\"data\" [nzPageSize]=\"10\">\n  <thead nz-thead>\n    <tr>\n      <th nz-th><span>ID</span></th>\n      <th nz-th><span>账号</span></th>\n      <th nz-th><span>邮箱</span></th>\n      <th nz-th><span>角色</span></th>\n      <th nz-th><span>创建时间</span></th>\n      <th nz-th><span>状态</span></th>\n      <th nz-th><span>Action</span></th>\n    </tr>\n  </thead>\n  <tbody nz-tbody>\n    <tr nz-tbody-tr *ngFor=\"let data of nzTable.data\">\n      <td nz-td>{{data.id}}</td>\n      <td nz-td>{{data.account}}</td>\n      <td nz-td>{{data.email}}</td>\n      <td nz-td>{{data.role_name}}</td>\n      <td nz-td>{{data.created_at}}</td>\n      <td nz-td>{{data.status_name}}</td>\n      <td nz-td>\n        <span>\n          <a (click)=\"openEditModal(data)\">Edit</a>\n          <span nz-table-divider></span>\n          <a (click)=\"delete(data.id)\">Delete</a>\n          <span nz-table-divider></span>\n          <a (click)=\"recover(data.id)\">Recover</a>\n        </span>\n      </td>\n    </tr>\n  </tbody>\n</nz-table>\n\n<nz-modal [nzVisible]=\"isVisible\" [nzTitle]=\"modalTitle\" [nzContent]=\"modalContent\" [nzFooter]=\"modalFooter\" (nzOnCancel)=\"handleCancel($event)\">\n  <ng-template #modalTitle>\n    新建后台账号\n  </ng-template>\n  <ng-template #modalContent>\n    <form nz-form [formGroup]=\"addForm\">\n        <div nz-form-item nz-row>\n          <div nz-form-label nz-col [nzSm]=\"6\" [nzXs]=\"24\">\n            <label for=\"account\" nz-form-item-required>账号</label>\n          </div>\n          <div nz-form-control nz-col [nzSm]=\"14\" [nzXs]=\"24\" nzHasFeedback [nzValidateStatus]=\"getAddFormControl('account')\">\n            <nz-input [nzSize]=\"'large'\" formControlName=\"account\" [nzId]=\"'account'\"></nz-input>\n            <div nz-form-explain *ngIf=\"getAddFormControl('account').dirty&&getAddFormControl('account').hasError('account')\">请输入账号</div>\n          </div>\n        </div>\n        <div nz-form-item nz-row>\n          <div nz-form-label nz-col [nzSm]=\"6\" [nzXs]=\"24\">\n            <label for=\"email\" nz-form-item-required>邮箱</label>\n          </div>\n          <div nz-form-control nz-col [nzSm]=\"14\" [nzXs]=\"24\" nzHasFeedback [nzValidateStatus]=\"getAddFormControl('email')\">\n            <nz-input [nzSize]=\"'large'\" formControlName=\"email\" [nzId]=\"'email'\"></nz-input>\n            <div nz-form-explain *ngIf=\"getAddFormControl('email').dirty&&getAddFormControl('email').hasError('email')\">请输入邮箱</div>\n          </div>\n        </div>\n        <div nz-form-item nz-row>\n          <div nz-form-label nz-col [nzSm]=\"6\" [nzXs]=\"24\">\n            <label for=\"password\" nz-form-item-required>密码</label>\n          </div>\n          <div nz-form-control nz-col [nzSm]=\"14\" [nzXs]=\"24\" nzHasFeedback [nzValidateStatus]=\"getAddFormControl('password')\">\n            <nz-input [nzSize]=\"'large'\" formControlName=\"password\" [nzType]=\"'password'\" [nzId]=\"'password'\"></nz-input>\n            <div nz-form-explain *ngIf=\"getAddFormControl('password').dirty&&getAddFormControl('password').hasError('required')\">请输入密码</div>\n          </div>\n        </div>\n        <div nz-form-item nz-row>\n          <div nz-form-label nz-col [nzSm]=\"6\" [nzXs]=\"24\">\n            <label for=\"role\" nz-form-item-required>角色</label>\n          </div>\n          <div nz-form-control nz-col [nzSm]=\"14\" [nzXs]=\"24\" nzHasFeedback [nzValidateStatus]=\"getAddFormControl('role')\">\n            <nz-select nzAllowClear [nzSize]=\"'large'\" [nzPlaceHolder]=\"'ALL'\" [formControlName]=\"'role'\">\n              <nz-option [nzLabel]=\"'超管'\" [nzValue]=\"1\"> </nz-option>\n              <nz-option [nzLabel]=\"'一般管'\" [nzValue]=\"0\"> </nz-option>\n            </nz-select>\n            <div nz-form-explain *ngIf=\"getAddFormControl('role').dirty&&getAddFormControl('role').hasError('required')\">请选择该用户的角色!</div>\n          </div>\n        </div>\n      </form>\n  </ng-template>\n  <ng-template #modalFooter>\n    <button nz-button [nzType]=\"'default'\" [nzSize]=\"'large'\" (click)=\"handleCancel($event)\">\n      返 回\n    </button>\n    <button nz-button [nzType]=\"'primary'\" [nzSize]=\"'large'\" (click)=\"saveAccount($event)\" [nzLoading]=\"isConfirmLoading\">\n      提 交\n    </button>\n  </ng-template>\n</nz-modal>"
+module.exports = "<form nz-form [formGroup]=\"searchForm\" class=\"ant-advanced-search-form\">\n  <div nz-row [nzGutter]=\"40\">\n    <div nz-col [nzSpan]=\"8\">\n      <div nz-form-item nz-row>\n        <div nz-form-label nz-col [nzSpan]=\"5\">\n          <label [attr.for]=\"'account'\">账号</label>\n        </div>\n        <div nz-form-control nz-col [nzSpan]=\"19\">\n          <nz-input [nzSize]=\"'large'\" [nzPlaceHolder]=\"'请输入账号'\" [formControlName]=\"'account'\"></nz-input>\n        </div>\n      </div>\n    </div>\n\n    <div nz-col [nzSpan]=\"8\">\n      <div nz-form-item nz-row>\n        <div nz-form-label nz-col [nzSpan]=\"5\">\n          <label [attr.for]=\"'role'\">角色</label>\n        </div>\n        <div nz-form-control nz-col [nzSpan]=\"19\">\n            <nz-select nzAllowClear [nzSize]=\"'large'\" [nzPlaceHolder]=\"'ALL'\" [formControlName]=\"'role'\">\n              <nz-option [nzLabel]=\"'ALL'\" [nzValue]=\"-1\"> </nz-option>\n              <nz-option [nzLabel]=\"'超管'\" [nzValue]=\"1\"> </nz-option>\n              <nz-option [nzLabel]=\"'一般管'\" [nzValue]=\"0\"> </nz-option>\n            </nz-select>\n        </div>\n      </div>\n    </div>\n\n    <div nz-col [nzSpan]=\"8\">\n      <div nz-form-item nz-row>\n        <div nz-form-label nz-col [nzSpan]=\"5\">\n          <label [attr.for]=\"'status'\">状态</label>\n        </div>\n        <div nz-form-control nz-col [nzSpan]=\"19\">\n            <nz-select nzAllowClear [nzSize]=\"'large'\" [nzPlaceHolder]=\"'ALL'\" [formControlName]=\"'status'\">\n              <nz-option [nzLabel]=\"'ALL'\" [nzValue]=\"-1\"> </nz-option>\n              <nz-option [nzLabel]=\"'正常'\" [nzValue]=\"1\"> </nz-option>\n              <nz-option [nzLabel]=\"'封停'\" [nzValue]=\"0\"> </nz-option>\n            </nz-select>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div nz-row>\n    <div nz-col [nzSpan]=\"24\" style=\"text-align: right;\">\n      <button nz-button [nzType]=\"'primary'\" (click)=\"search()\">按条件查询</button>\n      <button nz-button (click)=\"resetForm()\">重置条件</button>\n      <button nz-button (click)=\"add()\">增加新账号</button>\n    </div>\n  </div>\n</form>\n\n<nz-table #nzTable [nzDataSource]=\"data\" [nzPageSize]=\"10\">\n  <thead nz-thead>\n    <tr>\n      <th nz-th><span>ID</span></th>\n      <th nz-th><span>账号</span></th>\n      <th nz-th><span>邮箱</span></th>\n      <th nz-th><span>角色</span></th>\n      <th nz-th><span>创建时间</span></th>\n      <th nz-th><span>状态</span></th>\n      <th nz-th><span>Action</span></th>\n    </tr>\n  </thead>\n  <tbody nz-tbody>\n    <tr nz-tbody-tr *ngFor=\"let data of nzTable.data\">\n      <td nz-td>{{data.id}}</td>\n      <td nz-td>{{data.account}}</td>\n      <td nz-td>{{data.email}}</td>\n      <td nz-td>{{data.role_name}}</td>\n      <td nz-td>{{data.created_at}}</td>\n      <td nz-td>{{data.status_name}}</td>\n      <td nz-td>\n        <span>\n          <a (click)=\"openEditModal(data)\">Edit</a>\n          <span nz-table-divider></span>\n          <a (click)=\"delete(data.id)\">Delete</a>\n          <span nz-table-divider></span>\n          <a (click)=\"recover(data.id)\">Recover</a>\n        </span>\n      </td>\n    </tr>\n  </tbody>\n</nz-table>\n\n<nz-modal [nzVisible]=\"isVisible\" [nzTitle]=\"modalTitle\" [nzContent]=\"modalContent\" [nzFooter]=\"modalFooter\" (nzOnCancel)=\"handleCancel($event)\">\n  <ng-template #modalTitle>\n    新建后台账号\n  </ng-template>\n  <ng-template #modalContent>\n    <form nz-form [formGroup]=\"addForm\">\n        <div nz-form-item nz-row>\n          <div nz-form-label nz-col [nzSm]=\"6\" [nzXs]=\"24\">\n            <label for=\"account\" nz-form-item-required>账号</label>\n          </div>\n          <div nz-form-control nz-col [nzSm]=\"14\" [nzXs]=\"24\" nzHasFeedback [nzValidateStatus]=\"getAddFormControl('account')\">\n            <nz-input [nzSize]=\"'large'\" formControlName=\"account\" [nzId]=\"'account'\"></nz-input>\n            <div nz-form-explain *ngIf=\"getAddFormControl('account').dirty&&getAddFormControl('account').hasError('account')\">请输入账号</div>\n          </div>\n        </div>\n        <div nz-form-item nz-row>\n          <div nz-form-label nz-col [nzSm]=\"6\" [nzXs]=\"24\">\n            <label for=\"email\" nz-form-item-required>邮箱</label>\n          </div>\n          <div nz-form-control nz-col [nzSm]=\"14\" [nzXs]=\"24\" nzHasFeedback [nzValidateStatus]=\"getAddFormControl('email')\">\n            <nz-input [nzSize]=\"'large'\" formControlName=\"email\" [nzId]=\"'email'\"></nz-input>\n            <div nz-form-explain *ngIf=\"getAddFormControl('email').dirty&&getAddFormControl('email').hasError('email')\">请输入邮箱</div>\n          </div>\n        </div>\n        <div nz-form-item nz-row>\n          <div nz-form-label nz-col [nzSm]=\"6\" [nzXs]=\"24\">\n            <label for=\"password\" nz-form-item-required>密码</label>\n          </div>\n          <div nz-form-control nz-col [nzSm]=\"14\" [nzXs]=\"24\" nzHasFeedback [nzValidateStatus]=\"getAddFormControl('password')\">\n            <nz-input [nzSize]=\"'large'\" formControlName=\"password\" [nzType]=\"'password'\" [nzId]=\"'password'\"></nz-input>\n            <div nz-form-explain *ngIf=\"getAddFormControl('password').dirty&&getAddFormControl('password').hasError('required')\">请输入密码</div>\n          </div>\n        </div>\n        <div nz-form-item nz-row>\n          <div nz-form-label nz-col [nzSm]=\"6\" [nzXs]=\"24\">\n            <label for=\"role\" nz-form-item-required>角色</label>\n          </div>\n          <div nz-form-control nz-col [nzSm]=\"14\" [nzXs]=\"24\" nzHasFeedback [nzValidateStatus]=\"getAddFormControl('role')\">\n            <nz-select nzAllowClear [nzSize]=\"'large'\" [nzPlaceHolder]=\"'ALL'\" [formControlName]=\"'role'\">\n              <nz-option [nzLabel]=\"'超管'\" [nzValue]=\"1\"> </nz-option>\n              <nz-option [nzLabel]=\"'一般管'\" [nzValue]=\"0\"> </nz-option>\n            </nz-select>\n            <div nz-form-explain *ngIf=\"getAddFormControl('role').dirty&&getAddFormControl('role').hasError('required')\">请选择该用户的角色!</div>\n          </div>\n        </div>\n      </form>\n  </ng-template>\n  <ng-template #modalFooter>\n    <button nz-button [nzType]=\"'default'\" [nzSize]=\"'large'\" (click)=\"handleCancel($event)\">\n      返 回\n    </button>\n    <button nz-button [nzType]=\"'primary'\" [nzSize]=\"'large'\" (click)=\"saveAccount($event)\" [nzLoading]=\"isConfirmLoading\">\n      提 交\n    </button>\n  </ng-template>\n</nz-modal>"
 
 /***/ }),
 
@@ -976,7 +976,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/main/main.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nz-layout class=\"layout\" style=\"height:100%\">\n    <nz-header style=\"background: #1976d2\">\n        <div class=\"logo\">这是XXX管理后台</div>\n        <div class=\"info\">\n            <nz-badge [nzCount]=\"5\">\n                <ng-template #content>\n                    <nz-avatar nzIcon=\"user\" style=\"background-color:#87d068;\"></nz-avatar>\n                </ng-template>\n            </nz-badge>\n            &nbsp;&nbsp;\n            <nz-dropdown [nzTrigger]=\"'click'\">\n                <a href class=\"ant-dropdown-link\" nz-dropdown style=\"color:#fff\">\n                    Admin <i class=\"anticon anticon-down\"></i>\n                </a>\n                <ul nz-menu>\n                    <li nz-menu-item (click)=\"_logout()\">点击退出</li>\n                </ul>\n            </nz-dropdown>\n        </div>\n    </nz-header>\n    <nz-layout>\n        <nz-sider [nzWidth]=\"200\" style=\"background:#fff\">\n            <ul nz-menu [nzMode]=\"'inline'\" style=\"height:100%\">\n                <li nz-submenu>\n                    <span title><i class=\"anticon anticon-windows\"></i>后台管理</span>\n                    <ul>\n                        <li nz-menu-item [routerLink]=\"['admin/dashboard']\">后台首页</li>\n                        <li nz-menu-item [routerLink]=\"['admin/user']\">账号管理</li>\n                        <li nz-menu-item [routerLink]=\"['admin/privilege']\">权限管理</li>\n                    </ul>\n                </li>\n                <li nz-submenu>\n                    <span title><i class=\"anticon anticon-android\"></i>JS101代理</span>\n                    <ul>\n                        <li nz-menu-item [routerLink]=\"['proxy/user']\" >用户管理</li>\n                        <li nz-menu-item [routerLink]=\"['proxy/order']\">订单管理</li>\n                        <li nz-menu-item [routerLink]=\"['proxy/apikey']\">API-KEY管理</li>\n                        <li nz-menu-item [routerLink]=\"['proxy/ippool']\">代理管理</li>\n                        <li nz-menu-item [routerLink]=\"['proxy/crawl']\">网站爬虫管理</li>\n                    </ul>\n                </li>\n                <li nz-submenu>\n                    <span title><i class=\"anticon anticon-apple\"></i>数据挖掘</span>\n                    <ul>\n                        <li nz-menu-item [routerLink]=\"['analysis/douban/group']\" >豆瓣小组</li>\n                        <li nz-menu-item [routerLink]=\"['analysis/lagou/job']\" >拉勾网</li>\n                        <li nz-menu-item [routerLink]=\"['analysis/zhihu/topic']\" >知乎话题</li>\n                    </ul>\n                </li>\n            </ul>\n        </nz-sider>\n        <nz-layout style=\"padding:0 10px 10px\">\n            <nz-breadcrumb style=\"margin:5px 0;\">\n                <nz-breadcrumb-item>Home</nz-breadcrumb-item>\n                <nz-breadcrumb-item>List</nz-breadcrumb-item>\n                <nz-breadcrumb-item>App</nz-breadcrumb-item>\n            </nz-breadcrumb>\n            <nz-content style=\"background:#fff; padding: 10px; min-height: 280px;\">\n                <router-outlet></router-outlet>\n            </nz-content>\n            <nz-footer style=\"text-align: center;\">Ant Design ©2017 Implement By Angular</nz-footer>\n        </nz-layout>\n    </nz-layout>\n</nz-layout>"
+module.exports = "<nz-layout class=\"layout\" style=\"height:100%\">\n    <nz-header style=\"background: #1976d2\">\n        <div class=\"logo\">这是XXX管理后台</div>\n        <div class=\"info\">\n            <nz-badge [nzCount]=\"5\">\n                <ng-template #content>\n                    <nz-avatar nzIcon=\"user\" style=\"background-color:#87d068;\"></nz-avatar>\n                </ng-template>\n            </nz-badge>\n            &nbsp;&nbsp;\n            <nz-dropdown [nzTrigger]=\"'click'\">\n                <a href class=\"ant-dropdown-link\" nz-dropdown style=\"color:#fff\">\n                    Admin <i class=\"anticon anticon-down\"></i>\n                </a>\n                <ul nz-menu>\n                    <li nz-menu-item (click)=\"_logout()\">点击退出</li>\n                </ul>\n            </nz-dropdown>\n        </div>\n    </nz-header>\n    <nz-layout>\n        <nz-sider [nzWidth]=\"200\" style=\"background:#fff\">\n            <ul nz-menu [nzMode]=\"'inline'\" style=\"height:100%\">\n                <li nz-submenu [nzOpen]=\"true\">\n                    <span title><i class=\"anticon anticon-windows\"></i>后台管理</span>\n                    <ul>\n                        <li nz-menu-item [routerLink]=\"['admin/dashboard']\" [nzSelected]=\"true\">后台首页</li>\n                        <li nz-menu-item [routerLink]=\"['admin/user']\">账号管理</li>\n                        <!--\n                        <li nz-menu-item [routerLink]=\"['admin/privilege']\">权限管理</li>\n                        -->\n                    </ul>\n                </li>\n                <li nz-submenu>\n                    <span title><i class=\"anticon anticon-android\"></i>JS101代理</span>\n                    <ul>\n                        <li nz-menu-item [routerLink]=\"['proxy/user']\" >用户管理</li>\n                        <!--\n                        <li nz-menu-item [routerLink]=\"['proxy/order']\">订单管理</li>\n                        -->\n                        <li nz-menu-item [routerLink]=\"['proxy/apikey']\">API-KEY管理</li>\n                        <li nz-menu-item [routerLink]=\"['proxy/ippool']\">代理管理</li>\n                        <!--\n                        <li nz-menu-item [routerLink]=\"['proxy/crawl']\">网站爬虫管理</li>\n                        -->\n                    </ul>\n                </li>\n                <li nz-submenu>\n                    <span title><i class=\"anticon anticon-apple\"></i>数据挖掘</span>\n                    <ul>\n                        <li nz-menu-item [routerLink]=\"['analysis/douban/group']\" >豆瓣小组</li>\n                        <li nz-menu-item [routerLink]=\"['analysis/lagou/job']\" >拉勾网</li>\n                        <li nz-menu-item [routerLink]=\"['analysis/zhihu/topic']\" >知乎话题</li>\n                    </ul>\n                </li>\n            </ul>\n        </nz-sider>\n        <nz-layout style=\"padding:0 10px 10px\">\n            <nz-breadcrumb style=\"margin:5px 0;\">\n                <nz-breadcrumb-item>Home</nz-breadcrumb-item>\n                <nz-breadcrumb-item>List</nz-breadcrumb-item>\n                <nz-breadcrumb-item>App</nz-breadcrumb-item>\n            </nz-breadcrumb>\n            <nz-content style=\"background:#fff; padding: 10px; min-height: 280px;\">\n                <router-outlet></router-outlet>\n            </nz-content>\n            <nz-footer style=\"text-align: center;\">Ant Design ©2017 Implement By Angular</nz-footer>\n        </nz-layout>\n    </nz-layout>\n</nz-layout>"
 
 /***/ }),
 
@@ -1041,7 +1041,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/main/proxy/proxy-apikey/proxy-apikey.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  proxy-apikey works!\n</p>\n"
+module.exports = "<form nz-form [formGroup]=\"searchForm\" class=\"ant-advanced-search-form\">\n  <div nz-row [nzGutter]=\"40\">\n    <div nz-col [nzSpan]=\"8\">\n      <div nz-form-item nz-row>\n        <div nz-form-label nz-col [nzSpan]=\"5\">\n          <label [attr.for]=\"'owner'\">使用者</label>\n        </div>\n        <div nz-form-control nz-col [nzSpan]=\"19\">\n          <nz-input [nzSize]=\"'large'\" [nzPlaceHolder]=\"'使用者'\" [formControlName]=\"'owner'\"></nz-input>\n        </div>\n      </div>\n    </div>\n\n    <div nz-col [nzSpan]=\"8\">\n      <div nz-form-item nz-row>\n        <div nz-form-label nz-col [nzSpan]=\"5\">\n          <label [attr.for]=\"'key'\">KEY</label>\n        </div>\n        <div nz-form-control nz-col [nzSpan]=\"19\">\n            <nz-input [nzSize]=\"'large'\" [nzPlaceHolder]=\"'KEY'\" [formControlName]=\"'key'\"></nz-input>\n        </div>\n      </div>\n    </div>\n    \n    <div nz-col [nzSpan]=\"8\">\n      <div nz-form-item nz-row>\n        <div nz-form-label nz-col [nzSpan]=\"5\">\n          <label [attr.for]=\"'status'\">状态</label>\n        </div>\n        <div nz-form-control nz-col [nzSpan]=\"19\">\n            <nz-select nzAllowClear [nzSize]=\"'large'\" [nzPlaceHolder]=\"'ALL'\" [formControlName]=\"'status'\">\n              <nz-option [nzLabel]=\"'ALL'\" [nzValue]=\"-1\"> </nz-option>\n              <nz-option [nzLabel]=\"'正常'\" [nzValue]=\"1\"> </nz-option>\n              <nz-option [nzLabel]=\"'封停'\" [nzValue]=\"0\"> </nz-option>\n            </nz-select>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div nz-row>\n    <div nz-col [nzSpan]=\"24\" style=\"text-align: right;\">\n      <button nz-button [nzType]=\"'primary'\" (click)=\"search()\">按条件查询</button>\n      <button nz-button (click)=\"resetForm()\">重置条件</button>\n      <button nz-button (click)=\"add()\">增加新KEY</button>\n    </div>\n  </div>\n</form>\n\n<nz-table #nzTable [nzDataSource]=\"data\" [nzPageSize]=\"10\">\n  <thead nz-thead>\n    <tr>\n      <th nz-th><span>ID</span></th>\n      <th nz-th><span>使用者</span></th>\n      <th nz-th><span>KEY</span></th>\n      <th nz-th><span>创建时间</span></th>\n      <th nz-th><span>状态</span></th>\n      <th nz-th><span>Action</span></th>\n    </tr>\n  </thead>\n  <tbody nz-tbody>\n    <tr nz-tbody-tr *ngFor=\"let data of nzTable.data\">\n      <td nz-td>{{data.id}}</td>\n      <td nz-td>{{data.owner}}</td>\n      <td nz-td>{{data.key}}</td>\n      <td nz-td>{{data.created_at}}</td>\n      <td nz-td>{{data.status_name}}</td>\n      <td nz-td>\n        <span>\n          <a (click)=\"delete(data.id)\">Delete</a>\n          <span nz-table-divider></span>\n          <a (click)=\"recover(data.id)\">Recover</a>\n        </span>\n      </td>\n    </tr>\n  </tbody>\n</nz-table>\n\n<nz-modal [nzVisible]=\"isVisible\" [nzTitle]=\"modalTitle\" [nzContent]=\"modalContent\" [nzFooter]=\"modalFooter\" (nzOnCancel)=\"handleCancel($event)\">\n  <ng-template #modalTitle>\n    新建KEY\n  </ng-template>\n  <ng-template #modalContent>\n    <form nz-form [formGroup]=\"addForm\">\n        <div nz-form-item nz-row>\n          <div nz-form-label nz-col [nzSm]=\"6\" [nzXs]=\"24\">\n            <label for=\"owner\" nz-form-item-required>使用者</label>\n          </div>\n          <div nz-form-control nz-col [nzSm]=\"14\" [nzXs]=\"24\" nzHasFeedback [nzValidateStatus]=\"getAddFormControl('owner')\">\n            <nz-input [nzSize]=\"'large'\" formControlName=\"owner\" [nzId]=\"'owner'\"></nz-input>\n            <div nz-form-explain *ngIf=\"getAddFormControl('owner').dirty&&getAddFormControl('owner').hasError('owner')\">请输入使用者</div>\n          </div>\n        </div>\n        <div nz-form-item nz-row>\n          <div nz-form-label nz-col [nzSm]=\"6\" [nzXs]=\"24\">\n            <label for=\"key\" nz-form-item-required>KEY</label>\n          </div>\n          <div nz-form-control nz-col [nzSm]=\"14\" [nzXs]=\"24\" nzHasFeedback [nzValidateStatus]=\"getAddFormControl('key')\">\n            <nz-input [nzSize]=\"'large'\" formControlName=\"key\" [nzId]=\"'key'\"></nz-input>\n            <div nz-form-explain *ngIf=\"getAddFormControl('key').dirty&&getAddFormControl('key').hasError('key')\">请输入KEY</div>\n          </div>\n        </div>\n      </form>\n  </ng-template>\n  <ng-template #modalFooter>\n    <button nz-button [nzType]=\"'default'\" [nzSize]=\"'large'\" (click)=\"handleCancel($event)\">\n      返 回\n    </button>\n    <button nz-button [nzType]=\"'primary'\" [nzSize]=\"'large'\" (click)=\"saveKey($event)\" [nzLoading]=\"isConfirmLoading\">\n      提 交\n    </button>\n  </ng-template>\n</nz-modal>"
 
 /***/ }),
 
@@ -1051,6 +1051,8 @@ module.exports = "<p>\n  proxy-apikey works!\n</p>\n"
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProxyApikeyComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../../_@angular_core@4.3.6@@angular/core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../../_@angular_forms@4.3.6@@angular/forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__("../../../../_@angular_common@4.3.6@@angular/common/@angular/common/http.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1061,10 +1063,154 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
 var ProxyApikeyComponent = (function () {
-    function ProxyApikeyComponent() {
+    function ProxyApikeyComponent(fb, http) {
+        var _this = this;
+        this.fb = fb;
+        this.http = http;
+        this.api_url = '';
+        this.queryParams = {};
+        this.data = [];
+        this.isVisible = false;
+        this.isConfirmLoading = false;
+        this.saveKey = function (e) {
+            _this.isConfirmLoading = true;
+            var options = {
+                headers: new __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["c" /* HttpHeaders */]({ 'Content-Type': 'application/x-www-form-urlencoded' })
+            };
+            var params = {};
+            for (var i in _this.addForm.controls) {
+                params[i] = _this.addForm.controls[i].value;
+            }
+            var body = Object.keys(params).map(function (key) {
+                if (params[key] !== null) {
+                    return key + '=' + params[key];
+                }
+            }).join('&');
+            console.log(params);
+            var url = _this.api_url + '/api/proxy/apikey/new/';
+            console.log(body);
+            _this.http
+                .post(url, body, options)
+                .subscribe(function (data) {
+                console.log(data);
+                if (data['c'] !== 0) {
+                    alert(data['m']);
+                    _this.isConfirmLoading = false;
+                }
+                else {
+                    _this.isVisible = false;
+                    _this.isConfirmLoading = false;
+                    _this.addForm.reset();
+                    _this.search();
+                }
+            }, function (err) {
+                alert('提交失败，请重试！');
+                _this.isConfirmLoading = false;
+            });
+        };
+        this.handleCancel = function (e) {
+            _this.isVisible = false;
+        };
     }
     ProxyApikeyComponent.prototype.ngOnInit = function () {
+        this.searchForm = this.fb.group({});
+        this.searchForm.addControl("owner", new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormControl */]());
+        this.searchForm.addControl("key", new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormControl */]());
+        this.searchForm.addControl("status", new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormControl */]());
+        this.addForm = this.fb.group({
+            owner: [null, [__WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].required]],
+            key: [null, [__WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].required]]
+        });
+        this.getList();
+    };
+    /**这里的账号列表相关 */
+    ProxyApikeyComponent.prototype.getList = function () {
+        var _this = this;
+        var params = this.queryParams;
+        var query = Object.keys(params).map(function (key) {
+            if (params[key] !== null) {
+                return key + '=' + params[key];
+            }
+        }).join('&');
+        console.log(query);
+        this.http
+            .get(this.api_url + '/api/proxy/apikey/get-list/?' + query)
+            .subscribe(function (data) {
+            if (data['c'] == 0) {
+                _this.data = data['d']['data'];
+            }
+        }, function (err) {
+            alert('查询失败，请重试');
+        });
+    };
+    ProxyApikeyComponent.prototype.search = function () {
+        for (var i in this.searchForm.controls) {
+            this.queryParams[i] = this.searchForm.controls[i].value;
+        }
+        this.getList();
+    };
+    ProxyApikeyComponent.prototype.resetForm = function () {
+        this.searchForm.reset();
+        this.queryParams = {};
+    };
+    ProxyApikeyComponent.prototype.delete = function (id) {
+        console.log('delete', id);
+        var params = { id: id, status: 0 };
+        this._update(id, params);
+    };
+    ProxyApikeyComponent.prototype.recover = function (id) {
+        console.log('recover', id);
+        var params = { id: id, status: 1 };
+        this._update(id, params);
+    };
+    ProxyApikeyComponent.prototype._update = function (id, params) {
+        var _this = this;
+        var options = {
+            headers: new __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["c" /* HttpHeaders */]({ 'Content-Type': 'application/x-www-form-urlencoded' })
+        };
+        var body = Object.keys(params).map(function (key) {
+            if (params[key] !== null) {
+                return key + '=' + params[key];
+            }
+        }).join('&');
+        this.http
+            .post(this.api_url + '/api/proxy/apikey/update/', body, options)
+            .subscribe(function (data) {
+            console.log(data);
+            if (data['c'] !== 0) {
+                alert(data['m']);
+                _this.isConfirmLoading = false;
+            }
+            else {
+                _this.isVisible = false;
+                _this.isConfirmLoading = false;
+                _this.addForm.reset();
+                _this.search();
+            }
+        }, function (err) {
+            alert('提交失败，请重试！');
+            _this.isConfirmLoading = false;
+        });
+    };
+    /**这里的加KEY相关 */
+    ProxyApikeyComponent.prototype.add = function () {
+        this.addForm.reset();
+        this.addForm.controls.key.patchValue(this.genKey());
+        this.isVisible = true;
+    };
+    ProxyApikeyComponent.prototype.genKey = function () {
+        return Math.random().toString(36).substr(2);
+    };
+    ProxyApikeyComponent.prototype._submitForm = function () {
+        for (var i in this.addForm.controls) {
+            this.addForm.controls[i].markAsDirty();
+        }
+    };
+    ProxyApikeyComponent.prototype.getAddFormControl = function (name) {
+        return this.addForm.controls[name];
     };
     ProxyApikeyComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
@@ -1072,9 +1218,10 @@ var ProxyApikeyComponent = (function () {
             template: __webpack_require__("../../../../../src/app/main/proxy/proxy-apikey/proxy-apikey.component.html"),
             styles: [__webpack_require__("../../../../../src/app/main/proxy/proxy-apikey/proxy-apikey.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormBuilder */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */]) === "function" && _b || Object])
     ], ProxyApikeyComponent);
     return ProxyApikeyComponent;
+    var _a, _b;
 }());
 
 //# sourceMappingURL=proxy-apikey.component.js.map
