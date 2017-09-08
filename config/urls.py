@@ -6,5 +6,6 @@ from django.conf.urls import include, url
 urlpatterns = [
     url(r'^api/common/', include('app.common.urls')),
     url(r'^api/auth/', include('app.auth.urls')),
-    url(r'^api/admin/', include('app.admin.urls'))
+    url(r'^api/admin/', include('app.admin.urls')),
+    url(r'^api/proxy/', include('app.proxy.urls'))
 ]

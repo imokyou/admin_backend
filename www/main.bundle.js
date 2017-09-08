@@ -1163,7 +1163,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/main/proxy/proxy-ippool/proxy-ippool.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  proxy-ippool works!\n</p>\n"
+module.exports = "\n<button nz-button [nzType]=\"'primary'\" (click)=\"search()\">刷新</button>\n<nz-table #nzTable [nzDataSource]=\"data\" [nzPageSize]=\"10\">\n  <thead nz-thead>\n    <tr>\n      <th nz-th><span>ID</span></th>\n      <th nz-th><span>PROXY</span></th>\n      <th nz-th><span>类型</span></th>\n    </tr>\n  </thead>\n  <tbody nz-tbody>\n    <tr nz-tbody-tr *ngFor=\"let data of nzTable.data; let i = index\">\n      <td nz-td>{{i+1}}</td>\n      <td nz-td>{{data.proxy}}</td>\n      <td nz-td>高匿</td>\n    </tr>\n  </tbody>\n</nz-table>"
 
 /***/ }),
 
@@ -1173,6 +1173,7 @@ module.exports = "<p>\n  proxy-ippool works!\n</p>\n"
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProxyIppoolComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../../_@angular_core@4.3.6@@angular/core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("../../../../_@angular_common@4.3.6@@angular/common/@angular/common/http.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1183,10 +1184,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var ProxyIppoolComponent = (function () {
-    function ProxyIppoolComponent() {
+    function ProxyIppoolComponent(http) {
+        this.http = http;
+        this.api_url = '';
+        this.data = [];
     }
     ProxyIppoolComponent.prototype.ngOnInit = function () {
+        this.getList();
+    };
+    ProxyIppoolComponent.prototype.search = function () {
+        this.getList();
+    };
+    ProxyIppoolComponent.prototype.getList = function () {
+        var _this = this;
+        this.http
+            .get(this.api_url + '/api/proxy/ippool/get-list/')
+            .subscribe(function (data) {
+            if (data['c'] == 0) {
+                _this.data = data['d']['data'];
+            }
+        }, function (err) {
+            alert('查询失败，请重试');
+        });
     };
     ProxyIppoolComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
@@ -1194,9 +1215,10 @@ var ProxyIppoolComponent = (function () {
             template: __webpack_require__("../../../../../src/app/main/proxy/proxy-ippool/proxy-ippool.component.html"),
             styles: [__webpack_require__("../../../../../src/app/main/proxy/proxy-ippool/proxy-ippool.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]) === "function" && _a || Object])
     ], ProxyIppoolComponent);
     return ProxyIppoolComponent;
+    var _a;
 }());
 
 //# sourceMappingURL=proxy-ippool.component.js.map
@@ -1285,7 +1307,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/main/proxy/proxy-user/proxy-user.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  proxy-user works!\n</p>\n"
+module.exports = "<form nz-form [formGroup]=\"searchForm\" class=\"ant-advanced-search-form\">\n  <div nz-row [nzGutter]=\"40\">\n    <div nz-col [nzSpan]=\"8\">\n      <div nz-form-item nz-row>\n        <div nz-form-label nz-col [nzSpan]=\"5\">\n          <label [attr.for]=\"'email'\">账号</label>\n        </div>\n        <div nz-form-control nz-col [nzSpan]=\"19\">\n          <nz-input [nzSize]=\"'large'\" [nzPlaceHolder]=\"'请输入账号'\" [formControlName]=\"'email'\"></nz-input>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div nz-row>\n    <div nz-col [nzSpan]=\"24\" style=\"text-align: right;\">\n      <button nz-button [nzType]=\"'primary'\" (click)=\"search()\">按条件查询</button>\n      <button nz-button (click)=\"resetForm()\">重置条件</button>\n    </div>\n  </div>\n</form>\n\n<nz-table #nzTable [nzDataSource]=\"data\" [nzPageSize]=\"10\">\n  <thead nz-thead>\n    <tr>\n      <th nz-th><span>ID</span></th>\n      <th nz-th><span>账号</span></th>\n      <th nz-th><span>QQ</span></th>\n      <th nz-th><span>创建时间</span></th>\n    </tr>\n  </thead>\n  <tbody nz-tbody>\n    <tr nz-tbody-tr *ngFor=\"let data of nzTable.data\">\n      <td nz-td>{{data.id}}</td>\n      <td nz-td>{{data.email}}</td>\n      <td nz-td>{{data.contact}}</td>\n      <td nz-td>{{data.created_at}}</td>\n    </tr>\n  </tbody>\n</nz-table>"
 
 /***/ }),
 
@@ -1295,6 +1317,8 @@ module.exports = "<p>\n  proxy-user works!\n</p>\n"
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProxyUserComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../../_@angular_core@4.3.6@@angular/core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../../_@angular_forms@4.3.6@@angular/forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__("../../../../_@angular_common@4.3.6@@angular/common/@angular/common/http.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1305,10 +1329,50 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
 var ProxyUserComponent = (function () {
-    function ProxyUserComponent() {
+    function ProxyUserComponent(fb, http) {
+        this.fb = fb;
+        this.http = http;
+        this.api_url = '';
+        this.queryParams = {};
+        this.data = [];
     }
     ProxyUserComponent.prototype.ngOnInit = function () {
+        this.searchForm = this.fb.group({});
+        this.searchForm.addControl("email", new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormControl */]());
+        this.getList();
+    };
+    /**这里的账号列表相关 */
+    ProxyUserComponent.prototype.getList = function () {
+        var _this = this;
+        var params = this.queryParams;
+        var query = Object.keys(params).map(function (key) {
+            if (params[key] !== null) {
+                return key + '=' + params[key];
+            }
+        }).join('&');
+        console.log(query);
+        this.http
+            .get(this.api_url + '/api/proxy/user/get-list/?' + query)
+            .subscribe(function (data) {
+            if (data['c'] == 0) {
+                _this.data = data['d']['data'];
+            }
+        }, function (err) {
+            alert('查询失败，请重试');
+        });
+    };
+    ProxyUserComponent.prototype.search = function () {
+        for (var i in this.searchForm.controls) {
+            this.queryParams[i] = this.searchForm.controls[i].value;
+        }
+        this.getList();
+    };
+    ProxyUserComponent.prototype.resetForm = function () {
+        this.searchForm.reset();
+        this.queryParams = {};
     };
     ProxyUserComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
@@ -1316,9 +1380,10 @@ var ProxyUserComponent = (function () {
             template: __webpack_require__("../../../../../src/app/main/proxy/proxy-user/proxy-user.component.html"),
             styles: [__webpack_require__("../../../../../src/app/main/proxy/proxy-user/proxy-user.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormBuilder */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */]) === "function" && _b || Object])
     ], ProxyUserComponent);
     return ProxyUserComponent;
+    var _a, _b;
 }());
 
 //# sourceMappingURL=proxy-user.component.js.map
